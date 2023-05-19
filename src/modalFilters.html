@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вікно фільтрів Веб сторінки</title>
+    <link rel="stylesheet" href="../libs/css/bootstrap.css">
+    <link rel="stylesheet" href="../libs/css/jquery.bootgrid.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="modal fade in" style="display: block" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <button type="button">Очистити все</button>
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                 @@loop('./htmlPartial/checkboxItem.html', '../data.json')
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+
+                <button type="button" class="btn btn-primary">Підтвердити</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../libs/js/jquery_3.3.1.min.js"></script>
+<script src="../libs/js/bootstrap.js"></script>
+<script src="../libs/js/jquery.bootgrid.js"></script>
+<script src="../libs/js/jquery.maskedinput.min.js"></script>
+<script src="/WebResources/ClientGlobalContext.js.aspx"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

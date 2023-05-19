@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>FormSearch</title>
+    <link rel="stylesheet" href="../libs/css/bootstrap.css">
+    <link rel="stylesheet" href="../libs/css/jquery.bootgrid.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="form-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn btn-template btn-outline">
+                    Шаблон
+                </div>
+            </div>
+        </div>
+
+        <div class="forms">
+            <div class="form searchInRegisterForm">
+                <div class="filterContainer">
+                    <div class="btns-cont">
+                        <button class="btn-register btn active">Реєстр</button>
+                    </div>
+                    <div class="input-cont">
+                        <label for="account-client-code">Станом на</label>
+
+                        <div class="input-col">
+                            <input type="text" id="account-client-code" name="AccountNumber"
+                                   placeholder=""
+                                   autocomplete="off">
+                            <p class="error-msg">Доступна кількість символів від 2 до 10, при пошуку
+                                враховуються
+                                тільки: А-я, A-z, 0-9, -, пробіл</p>
+                        </div>
+
+                    </div>
+                    <div class="input-cont">
+
+                        <label for="registerControlSelect">РУ</label>
+                        <div class="input-col">
+                            <select id="registerControlSelect" class="form-control">
+                                <option selected>Київське РУ</option>
+                                <option>Тернопільське РУ</option>
+                                <option>Житомирске РУ</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="input-cont">
+                        <label for="statusSelect">Статус</label>
+                        <div class="input-col">
+                            <select id="statusSelect" class="form-control">
+                                <option selected>Всі</option>
+                                <option>Актуальна</option>
+                                <option>Архівна</option>
+                                <option>Нова</option>
+                                <option>Скасована</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-cont">
+                        <label for="lastActionSelect">Остання дія </label>
+                        <div class="input-col">
+                            <select id="lastActionSelect" class="form-control">
+                                <option selected>Актуалізація</option>
+                                <option>Відхилено</option>
+                                <option value="">Виявлено зауваження</option>
+                                <option value=""> Доопрацювання</option>
+                                <option value="">Заявка</option>
+                                <option value=""> Не підтверджено</option>
+                                <option value=""> Підтверджено</option>
+                                <option value="">Узгоджено</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-cont">
+                        <label for="fisicalPerson">ФО</label>
+                        <div class="input-col">
+                            <input checked type="checkbox" id="fisicalPerson">
+                        </div>
+                    </div>
+                    <div class="input-cont">
+                        <label for="legalPerson">ЮО</label>
+                        <div class="input-col">
+                            <input checked type="checkbox" id="legalPerson">
+                        </div>
+                    </div>
+                    <div class="btns-cont">
+                        <button class="btn-filters btn active">Фільтри</button>
+                    </div>
+                    <div class="btns-cont">
+                        <button class="btn-refresh btn active">Оновити</button>
+                    </div>
+
+                </div>
+                <div class="buttonsContainer">
+                    <div class="btns-cont">
+                        <button title="Внести дані нової анкети" class="btn-new-ankens btn btn-outline active">
+                            <img src="../libs/images/file-earmark-text.png" alt="">
+                        </button>
+                        <button title="Вивантажити в Excel" class="btn-new-download-in-excel btn btn-outline active">
+                            <img src="../libs/images/file-excel.png" alt="">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--        <div class="row d-flex align-items-center">-->
+        <!--            <div class="col-md-2"><p class="tab_label">Тип пов’язаної з Банком особи</p></div>-->
+        <!--            <div class="col-md-10">-->
+        <!--                <ul class="form-tabs">-->
+        <!--                    <li class="active">Фізична особа</li>-->
+        <!--                    <li>Юридична особа</li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+
+        <div class="forms">
+            <!--форма пошуку Юридичних осіб (Account)-->
+            <form class="form form-account active" name="account">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-conts">
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="account-rnk">Серія документу</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="account-rnk" name="CorpRnk" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 2 до 32, при пошуку
+                                                враховуються тільки
+                                                числа 0-9</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+
+                                    <div class="col-md-4"><label for="account-phone">Номер документу</label></div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="account-phone" name="Telephone1" placeholder=""
+                                                   autocomplete="off" class="telephone-mask">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 50, при пошуку
+                                                враховуються тільки
+                                                числа 0-9, рекомендований формат введення номеру телефону:
+                                                380670000000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4"><label for="lastName">Прізвище</label></div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="lastName" name="PrimeAccountNumber" placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                            враховуються
+                                            тільки числа 0-9</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4"><label for="name">Ім'я</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="name" name="PrimeAccountNumber" placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                            враховуються
+                                            тільки числа 0-9</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="middleName">По батькові</label></div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="middleName" name="PrimeAccountNumber" placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                            враховуються
+                                            тільки числа 0-9</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="btns-cont">
+                            <button class="btn-clear active">ОЧИСТИТИ</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="btns-cont">
+                            <button class="btn-submit active" type="submit">ПОШУК</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="btns-cont">
+                            <button class="btn-protocol active">Протокол</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btns-cont">
+                            <button class="btn-export active">Експорт</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+            <!--форма пошуку ФОП (Contact)-->
+            <form class="form form-contact" name="contact">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-conts">
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="contact-ipn">ІПН</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="contact-ipn" name="IPN" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 1 до 10, при пошуку
+                                                враховуються тільки
+                                                числа від 0 до 9</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="contact-surname">Прізвище</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="contact-surname" name="LastName" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 2 до 200, при пошуку
+                                                враховуються
+                                                тільки: А-я, A-z, 0-9, -, “,”, `, ’, «, », :, ;, пробіл</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="contact-rnk">РНК</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="contact-rnk" name="RNK" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 2 до 32, при пошуку
+                                                враховуються тільки
+                                                числа від 0 до 9</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="contact-name">Ім'я</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-col">
+                                            <input type="text" id="contact-name" name="FirstName" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 2 до 50, при пошуку
+                                                враховуються
+                                                тільки: А-я, A-z, 0-9, -, “,”, `, ’, «, », :, ;, пробіл</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="contact-phone">Номер телефону</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="contact-phone" name="PhoneNumber" placeholder=""
+                                               autocomplete="off" class="telephone-mask">
+                                        <p class="error-msg">Доступна кількість символів від 5 до 50, при пошуку
+                                            враховуються тільки
+                                            числа 0-9, рекомендований формат введення номеру телефону:
+                                            380670000000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="contact-series-passport">Серія паспорту</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="contact-series-passport" name="PassportSeries"
+                                               placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 1 до 23, при пошуку
+                                            враховуються
+                                            тільки: А-я, A-z, 0-9, -, пробіл</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="contact-account">Номер рахунку</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="contact-account" name="AccountNumber"
+                                               placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 5 до 100, при
+                                            пошуку
+                                            враховуються
+                                            тільки числа 0-9</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-cont">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="contact-number-passport">Номер паспорту / ID паспорт</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-col">
+                                        <input type="text" id="contact-number-passport" name="PassportNumber"
+                                               placeholder=""
+                                               autocomplete="off">
+                                        <p class="error-msg">Доступна кількість символів від 2 до 20, при пошуку
+                                            враховуються
+                                            тільки: А-я, A-z, 0-9, -, пробіл </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btns-cont">
+                    <button class="btn-submit active" type="submit">ПОШУК</button>
+                    <button class="btn-clear">ОЧИСТИТИ</button>
+                    <button class="btn-create">СТВОРИТИ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--end of form-wrapper-->
+
+    <!--start of table-wrapper-->
+    <div class="table-wrapper">
+        <div class="preloader">
+            <div class="preloader-img"></div>
+            <div class="preloader-text">Пошук...</div>
+        </div>
+        <!-- grid for Account-->
+
+
+        <div class="grid-cont table-account-cont active">
+            <table id="grid-account" class="table table-condensed table-hover">
+                <thead>
+                <tr class="table_header">
+                    <th></th>
+                    <th data-column-id="Id" data-identifier="true">Регіональне управління</th>
+                    <th data-column-id="test1" data-identifier="true">Установа Банку</th>
+                    <th data-column-id="Name" data-order="asc" data-formatter="link">Прізвище, ім`я, по батькові
+                        /Назва
+                    </th>
+                    <th data-column-id="StatusCode">Виявлені зауваження</th>
+                    <th data-column-id="RU" data-formatter="isCurrentUserRuCode">Реєстр. номер /Код за ЄДРПОУ</th>
+                    <th data-column-id="RUCode">Групи, до яких належить</th>
+                    <th data-column-id="test2">Статус</th>
+                    <th data-column-id="Address1Composite">Остання дія</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td>
+                        Базова форма
+                    </td>
+                    <td>Установа Банку</td>
+                    <td>Прізвище, ім`я, по батькові /Назва</td>
+                    <td>
+                        Виявлені зауваження
+                    </td>
+                    <td>
+                        Реєстр. номер /Код за ЄДРПОУ
+                    </td>
+                    <td>
+                        Групи, до яких належить
+                    </td>
+                    <td>
+                        Статус
+                    </td>
+                    <td>Остання дія</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        Повна форма
+                    </td>
+                    <td>Установа Банку</td>
+                    <td>Прізвище, ім`я, по батькові /Назва</td>
+                    <td>
+                        Виявлені зауваження
+                    </td>
+                    <td>
+                        Реєстр. номер /Код за ЄДРПОУ
+                    </td>
+                    <td>
+                        Групи, до яких належить
+                    </td>
+                    <td>
+                        Статус
+                    </td>
+                    <td>Остання дія</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--grid for Contact-->
+        <div class="grid-cont table-contact-cont">
+            <table id="grid-contact" class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th data-column-id="Id" data-identifier="true" data-visible='false'>ID</th>
+                    <th data-column-id="FullName" data-order="asc" data-formatter="link">Повне ім’я</th>
+                    <th data-column-id="IPN">ІПН</th>
+                    <th data-column-id="UsdSubtype">Підтип Клієнта</th>
+                    <th data-column-id="DateBirth">Дата народження</th>
+                    <th data-column-id="Phone">Номер телефону</th>
+                    <th data-column-id="RU" data-formatter="isCurrentUserRuCode">РУ</th>
+                    <th data-column-id="RUCode" data-visible='false'>Код РУ</th>
+                    <th data-column-id="FormManage">Форма господарювання</th>
+                    <th data-column-id="BusinessWay">Бізнес-напрям</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--end of table-wrapper-->
+</div>
+
+<style id="dialog-inner-styles">
+    .dialog-wrapper {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(128, 128, 128, 0.5);
+        font-family: Segoe\000020UI;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    .dialog-wrapper, .dialog-wrapper * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .dialog-wrapper .dialog-container {
+        position: absolute;
+        z-index: 999;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 600px;
+        background-color: #fff;
+        color: #000;
+    }
+
+    .dialog-wrapper .dialog-container .close-btn {
+        background-color: transparent;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-header-cont {
+        position: relative;
+        padding: 15px 30px;
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-header-cont .dialog-header {
+        margin: 0;
+        padding: 0;
+        font-size: 26px;
+        font-weight: lighter;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-header-cont .cross-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 20px;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-header-cont .cross-btn img {
+        width: 20px;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-text-cont {
+        overflow-y: auto;
+        max-height: 60vh;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-text-cont .dialog-text {
+        color: #000;
+        font-size: 14px;
+        text-align: left;
+        padding: 20px 40px 0 50px;
+        margin: 0;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-buttons-cont {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 30px 20px;
+        margin-top: 20px;
+        background-color: #F8F8F8;
+        display: flex;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-buttons-cont .close-btn {
+        min-width: 80px;
+        margin-left: auto;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-buttons-cont .btn {
+        background-color: #fff;
+        background-image: none;
+        padding: 3px 10px;
+        height: auto;
+    }
+
+    .dialog-wrapper .dialog-container .dialog-buttons-cont .btn:hover {
+        background-color: #B1D6F0;
+    }
+
+    .dialogChoseSubtypeClient .title {
+        font-weight: normal;
+        margin: 0 0 20px 0;
+        text-align: center;
+    }
+
+    .dialogChoseSubtypeClient .select-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dialogChoseSubtypeClient .select-wrapper select {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+</style>
+
+<div id="error-message" class="dialog-wrapper">
+    <div class="dialog-container">
+        <div class="dialog-header-cont">
+            <p class="dialog-header">Пошук клієнтів ММСБ</p>
+            <div class="close-btn cross-btn" title="Закрити">
+                <img src="/WebResources/corp_/searchMMSB/libs/images/CloseDialog.png" alt="close img">
+            </div>
+        </div>
+        <div class="dialog-text-cont">
+            <div class="dialog-text"></div>
+        </div>
+        <div class="dialog-buttons-cont">
+            <button class="btn close-btn">Закрити</button>
+        </div>
+    </div>
+</div>
+
+<template id="dialogChoseSubtypeClient">
+    <div class="dialogChoseSubtypeClient">
+        <h4 class="title">Оберіть Підтип Клієнта ММСБ, картку якого потрібно створити</h4>
+        <div class="select-wrapper">
+            <select name="SubtypeClient">
+                <option value="864500002" selected>ФО: Підприємець</option>
+                <option value="864500003">ФО: Незалежна професійна діяльність</option>
+                <option value="864500004">ФО: Кандидат</option>
+                <option value="864500001">ФО: Фізична особа</option>
+            </select>
+        </div>
+    </div>
+</template>
+
+<script src="../libs/js/jquery_3.3.1.min.js"></script>
+<script src="../libs/js/bootstrap.js"></script>
+<script src="../libs/js/jquery.bootgrid.js"></script>
+<script src="../libs/js/jquery.maskedinput.min.js"></script>
+<script src="/WebResources/ClientGlobalContext.js.aspx"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

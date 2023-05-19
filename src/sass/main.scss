@@ -521,7 +521,7 @@ body {
   width: 35px;
 }
 
-.modalChooseColumns {
+.modalChooseColumns, .modalFilters {
 
   label {
     font-weight: bold;
@@ -531,6 +531,10 @@ body {
     margin: 0;
   }
 
+  input[type="date"] {
+    line-height: 20px;
+  }
+
   input.form-control {
     display: block;
     width: 100%;
@@ -538,5 +542,50 @@ body {
     border: 1px solid #808285;
     color: #222;
     border-radius: 0;
+  }
+
+  .input-cont label,
+  .input-cont .input-col {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .input-cont .input-col select,
+  .input-cont .input-col input {
+    display: block;
+    width: 100%;
+    padding: 2px 25px 2px 10px;
+    border: 1px solid #808285;
+    color: #222;
+  }
+
+  .input-cont .input-col .error-msg {
+    display: none;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #808285;
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 100%;
+    color: #000;
+    background-color: #fff;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+}
+
+.modalFilters {
+  .input-cont .input-col,
+  .input-cont label {
+    display: block;
+    width: 100%;
   }
 }

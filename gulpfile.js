@@ -62,6 +62,14 @@ function css() {
         .pipe(browsersync.stream());
 }
 
+function html() {
+        const source = './src/*.html';
+
+        return src(source).pipe(changed(source)).pipe(dest('./search/')).pipe(browsersync.stream());
+
+
+}
+
 
 
 const paths = {
@@ -85,20 +93,20 @@ async function includeHTML(){
 function watchFiles() {
     watch('./src/sass/*', css);
     watch('./src/js/*', js);
-    watch('./src/*.html',includeHTML)
+    watch('./src/*.html',html)
     // watch('./libs/images/*', img);
 }
 
 function browserSync() {
     browsersync.init({
         server: {
-            baseDir: './'
+            baseDir: ['./search/','./'],
         },
         port: 3000
     });
 }
 
 exports.watch = parallel(watchFiles, browserSync);
-exports.default = series(clear, parallel(js, css, includeHTML));
+exports.default = series(clear, parallel(js, css, html));
 
 // exports.default = includeHTML;

@@ -11,24 +11,520 @@
 
 <div class="modal fade in" style="display: block" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg modalFilters" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    <button type="button">Очистити все</button>
+                    <button class="btn btn-primary" type="button">Очистити все</button>
                 </h4>
             </div>
             <div class="modal-body">
+                <div class="form-wrapper">
+                    <div class="forms">
+                        <div class="form active">
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="regionalAdministration">Регіональне управління
+                                            (хоча б один з)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="regionalAdministration" id="regionalAdministration">
+                                                <option value=""></option>
+                                                <option value="ВСІ">ВСІ</option>
+                                            </select></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="bankInstitution">Установа Банку (хоча б один з)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="bankInstitution" id="bankInstitution">
+                                                <option value=""></option>
+                                                <option value="ВСІ">ВСІ</option>
+                                            </select></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="thereAreNoQuestionnaireData">Анкетні дані відсутні</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-col">
+                                            <select name="thereAreNoQuestionnaireData"
+                                                    id="thereAreNoQuestionnaireData">
+                                                <option value=""></option>
+                                                <option value="Ні">Ні</option>
+                                                <option value="Так">Так</option>
+                                                <option value="Так, з анкетними даними в попередні періоди">Так, з
+                                                    анкетними даними в попередні періоди
+                                                </option>
+                                            </select></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="input-col">
+                                            <div class="input-col">
+                                                <input type="text" id="contact-surname" name="LastName"
+                                                       placeholder="Прізвище"
+                                                       autocomplete="off">
+                                                <p class="error-msg">Доступна кількість символів від 2 до 200, при
+                                                    пошуку
+                                                    враховуються
+                                                    тільки: А-я, A-z, 0-9, -, “,”, `, ’, «, », :, ;, пробіл</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
 
-                 @@loop('./htmlPartial/checkboxItem.html', '../data.json')
+                                        <div class="input-col">
+                                            <input type="text" id="contact-name" name="FirstName" placeholder="Ім'я"
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 2 до 50, при пошуку
+                                                враховуються
+                                                тільки: А-я, A-z, 0-9, -, “,”, `, ’, «, », :, ;, пробіл</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-col">
+                                            <input type="text" id="middleName" name="PrimeAccountNumber"
+                                                   placeholder="По батькові"
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="nameInput">Назва (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" id="nameInput" name="nameInput" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label>Кількість виявлених зауважень в межах</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>Від</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-col">
+                                                            <input type="number" id="remarks" name="remarks"
+                                                                   autocomplete="off">
+                                                            <p class="error-msg">Доступна кількість символів від 5 до
+                                                                100,
+                                                                при
+                                                                пошуку
+                                                                враховуються
+                                                                тільки числа 0-9</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>До</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-col">
+                                                            <input type="number" id="remarksMax" name="remarks"
+                                                                   autocomplete="off">
+                                                            <p class="error-msg">Доступна кількість символів від 5 до
+                                                                100,
+                                                                при
+                                                                пошуку
+                                                                враховуються
+                                                                тільки числа 0-9</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="textdetectedcomments">Текст виявлених зауважень (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" id="textdetectedcomments" name="nameInput" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="EDRPOU">Реєстр. номер /Код за ЄДРПОУ (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" id="EDRPOU" name="nameInput" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="Series">Серія (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" id="Series" name="nameInput" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="passportNumber">Номер паспорта (містить) </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" id="passportNumber" name="nameInput" placeholder=""
+                                                   autocomplete="off">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="Groups">Групи, до яких належить (хоча б один з) </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="Groups" id="Groups">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="Subgroups">Підгрупи, до яких належить (хоча б один з) </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="Subgroups" id="Subgroups">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="componentsOfSubgroups">Складові підгруп (хоча б один з)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="Subgroups" id="componentsOfSubgroups">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="presenceOfTheMainSigns">Наявність основних ознак</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-col">
+                                            <select name="presenceOfTheMainSigns" id="presenceOfTheMainSigns">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="thePresenceOfAdditionalSigns">Наявність додаткових ознак</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-col">
+                                            <select name="thePresenceOfAdditionalSigns"
+                                                    id="thePresenceOfAdditionalSigns">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="sourceOfInformation">Джерело інформації, на підставі якого,
+                                            вносяться дані до реєстру (хоча б одне з)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="sourceOfInformation" id="sourceOfInformation">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="theDateOfTheLastEntry">Дата внесення останньої актуалізації
+                                            інформації
+                                        </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label for="theDateOfTheLastEntry"> З</label>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <div class="input-col">
+                                                            <input type="date" name="theDateOfTheLastEntry"
+                                                                   id="theDateOfTheLastEntry">
+                                                            <p class="error-msg">Доступна кількість символів від 5 до
+                                                                100, при пошуку
+                                                                враховуються
+                                                                тільки числа 0-9</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label for="theDateOfTheLastEntrTo"> По</label>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <div class="input-col">
+                                                            <input type="date" name="theDateOfTheLastEntrTo"
+                                                                   id="theDateOfTheLastEntrTo">
+                                                            <p class="error-msg">Доступна кількість символів від 5 до
+                                                                100, при пошуку
+                                                                враховуються
+                                                                тільки числа 0-9</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="availabilityOfQuestionnaire">Наявність анкети пов`язаної з банком
+                                            особи</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="availabilityOfQuestionnaire" id="availabilityOfQuestionnaire">
+                                                <option value=""></option>
+                                                <option value=""> всі</option>
+                                                <option value=""> так</option>
+                                                <option value="">ні</option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="reasonOfAbsence">Причина відсутності анкети (хоча б один з)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <select name="reasonOfAbsence" id="reasonOfAbsence">
+                                                <option value=""></option>
+                                            </select>
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="theMainPlaceOfWork">Основне місце роботи пов'язаної з Банком фіз.
+                                            особи (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" name="theMainPlaceOfWork" id="theMainPlaceOfWork">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="surnameOfThePersonInCharge">Прізвище відповідального за внесення до
+                                            реєстру (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" name="surnameOfThePersonInCharge"
+                                                   id="surnameOfThePersonInCharge">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-cont">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="phoneNumberOfThePersonInCharge">Телефон відповідального за внесення
+                                            до реєстру (містить)</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-col">
+                                            <input type="text" name="phoneNumberOfThePersonInCharge"
+                                                   id="phoneNumberOfThePersonInCharge">
+                                            <p class="error-msg">Доступна кількість символів від 5 до 100, при пошуку
+                                                враховуються
+                                                тільки числа 0-9</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
 
-                <button type="button" class="btn btn-primary">Підтвердити</button>
+
+            <div class="modal-footer">
+                <div class="btns-cont clearfix">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Відмінити</button>
+
+                    <button type="button" class="btn btn-primary pull-right">Підтвердити</button>
+                </div>
             </div>
         </div>
     </div>

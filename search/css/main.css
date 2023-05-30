@@ -6,10 +6,15 @@
   border: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 *,
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -49,6 +54,8 @@ body {
   cursor: pointer;
   color: #000;
   -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -150,6 +157,11 @@ body {
 
 .form-container .form-wrapper .forms .form .input-cont .input-col ::-ms-input-placeholder {
   /* Microsoft Edge */
+  color: #968C8C;
+}
+
+.form-container .form-wrapper .forms .form .input-cont .input-col :-moz-placeholder {
+  /* Firefox 18- */
   color: #968C8C;
 }
 
@@ -260,6 +272,8 @@ body {
   background-color: #00503C;
   cursor: pointer;
   -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -276,6 +290,19 @@ body {
   color: #fff;
   background-color: #808285;
   pointer-events: none;
+}
+
+.form-container .form-wrapper .forms .form .btns-cont button.btn_icon {
+  min-width: 0;
+  width: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.form-container .form-wrapper .forms .form .btns-cont button.btn_icon img {
+  height: 24px;
+  width: 24px;
+  display: block;
 }
 
 .form-container .form-wrapper .forms .form .btns-cont .btn-create,
@@ -437,14 +464,10 @@ body {
 }
 
 .d-flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .align-items-center {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -493,6 +516,9 @@ body {
 }
 .form-container .form-wrapper .forms .form.searchInRegisterForm .filterContainer > *:not(last-child) {
   padding-right: 15px;
+}
+.form-container .form-wrapper .forms .form.searchInRegisterForm .filterContainer {
+  margin-bottom: 20px;
 }
 
 .table-account-cont th:first-child {
@@ -557,4 +583,8 @@ body {
 .modalFilters .input-cont label {
   display: block;
   width: 100%;
+}
+
+.form-container .table-wrapper .grid-cont.active .bootgrid-header .infoBar {
+  text-align: right;
 }

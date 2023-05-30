@@ -30,6 +30,9 @@ function clear() {
         .pipe(clean());
 }
 
+
+
+
 function js() {
     const source = './src/js/*.js';
 
@@ -42,6 +45,16 @@ function js() {
         // }))
         .pipe(dest('./search/js/'))
         .pipe(browsersync.stream());
+}
+
+//  gulp.task('styles', () => {
+//
+// });
+
+function styles() {
+     return gulp.src('./src/sass/main.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./search/css/')).pipe(browsersync.stream());
 }
 
 function css() {
@@ -91,7 +104,7 @@ async function includeHTML(){
 }
 
 function watchFiles() {
-    watch('./src/sass/*', css);
+    watch('./src/sass/*', styles);
     watch('./src/js/*', js);
     watch('./src/*.html',html)
     // watch('./libs/images/*', img);
@@ -107,6 +120,6 @@ function browserSync() {
 }
 
 exports.watch = parallel(watchFiles, browserSync);
-exports.default = series(clear, parallel(js, css, html));
+exports.default = series(clear, series([js, styles, html]));
 
 // exports.default = includeHTML;

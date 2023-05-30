@@ -7,6 +7,10 @@
   border: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 *,
 *:before,
 *:after {
@@ -293,6 +297,22 @@ body {
   pointer-events: none;
 }
 
+.form-container .form-wrapper .forms .form .btns-cont button.btn_icon {
+  min-width: 0;
+  width: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+
+
+  img {
+    height: 24px;
+    width: 24px;
+    display: block;
+  }
+
+}
+
 .form-container .form-wrapper .forms .form .btns-cont .btn-create,
 .form-container .form-wrapper .forms .form .btns-cont .btn-clear {
   position: absolute;
@@ -514,6 +534,10 @@ body {
     padding-right: 15px;
   }
 
+  .filterContainer {
+    margin-bottom: 20px;
+  }
+
 
 }
 
@@ -589,3 +613,14 @@ body {
     width: 100%;
   }
 }
+
+.form-container .table-wrapper .grid-cont.active {
+
+  .bootgrid-header .infoBar{
+    text-align: right;
+  }
+
+
+}
+
+

@@ -1,10 +1,18 @@
 "use strict";
 
 //---------- ©2018 e-consulting ----------//
-if (typeof (econsulting) == "undefined") { var econsulting = {__namespace: true} }
-if (typeof (econsulting.webres) == "undefined") { econsulting.webres = {__namespace: true} }
-if (typeof (econsulting.webres.GL) == "undefined") { econsulting.webres.GL = {__namespace: true} }
-if (typeof (econsulting.webres.AM) == "undefined") { econsulting.webres.AM = {__namespace: true} }
+if (typeof (econsulting) == "undefined") {
+    var econsulting = {__namespace: true}
+}
+if (typeof (econsulting.webres) == "undefined") {
+    econsulting.webres = {__namespace: true}
+}
+if (typeof (econsulting.webres.GL) == "undefined") {
+    econsulting.webres.GL = {__namespace: true}
+}
+if (typeof (econsulting.webres.AM) == "undefined") {
+    econsulting.webres.AM = {__namespace: true}
+}
 
 var webConstantsObj = {
     eo_dmmsb_accountServiceUrl: "",
@@ -152,8 +160,7 @@ econsulting.webres.GL.fetchRequest = function (fetchXML, entityName, callbackFun
                     if (callbackFunc != undefined) {
                         callbackFunc(fetchResult);
                     }
-                }
-                else {
+                } else {
                     fetchStatus = false;
                     console.log(this.statusText);
                 }
@@ -237,8 +244,7 @@ econsulting.webres.GL.topJQueryInit = function () {
             if (!a) var a = window.top;
             if (d.selector) {
                 if (a.$ && a.$(d.selector) && a.$(d.selector).length > 0) return void (b = a)
-            }
-            else if (d.property && a[d.property]) return void (b = a);
+            } else if (d.property && a[d.property]) return void (b = a);
             if (a.frames.length > 0) for (var e = 0; e < a.frames.length; e++) a.frames[e] && c(a.frames[e].window, d)
         }
 
@@ -347,17 +353,20 @@ econsulting.webres.GL.gridInit = function (elem) {
         ajax: false,
         navigation: 2,
         rowCount: [5],
+        searchable: false,
         labels: {
             all: "All",
-            infos: "{{ctx.start}} - {{ctx.end}} з {{ctx.total}} записів",
+            infos: "{{ctx.start}} - 3 з {{ctx.total}} записів",
             loading: "Loading...",
             noResults: messagesObj.noResults,
             refresh: "Refresh",
-            search: "Search"
+            // search: "Search"
         },
         css: {
             iconUp: "crm-icon-up",
-            iconDown: "crm-icon-down"
+            iconDown: "crm-icon-down",
+            pagination: "pagination",
+
         },
         sorting: true,
         multiSort: false,
@@ -375,8 +384,7 @@ econsulting.webres.GL.gridInit = function (elem) {
                     return "<span>" + rowData + "</span>";
                 }
             },
-            "ukdate": function(column, row)
-            {
+            "ukdate": function (column, row) {
                 var currentDateStr = row[column.id],
                     convertedDate;
 
@@ -404,11 +412,22 @@ econsulting.webres.GL.gridInit = function (elem) {
     }).on("loaded.rs.jquery.bootgrid", function () {
         econsulting.webres.GL.showGridMessage(elem, elem.messageStr);
         econsulting.webres.GL.registerOpenUserLinksHandler();
+        let paginationHtml = $(elem).closest(".grid-cont").find(".bootgrid-footer").html();
+        console.log(paginationHtml);
+        let topPagination = $(elem).closest(".grid-cont").find(".bootgrid-header");
+        topPagination.html(paginationHtml);
+
+
     }).on("cleared.rs.jquery.bootgrid", function () {
         /* Executes after data is loaded and rendered */
         econsulting.webres.GL.showGridMessage(elem, elem.messageStr);
 
     });
+
+    console.log("getTotalRowCount", $(elem).bootgrid("getTotalRowCount"));
+    console.log("getRowCount", $(elem).bootgrid("getRowCount"));
+    console.log("getCurrentRows", $(elem).bootgrid("getCurrentRows"));
+
 };
 
 econsulting.webres.GL.gridFiller = function (gridElem, nodes, hasMore) {
@@ -809,7 +828,7 @@ econsulting.webres.GL.registerFormBtnHandlers = function (formElem) {
             if (currentFormId) {
                 if (parent.Xrm) {
                     if (activeFormName === "contact") {
-                        econsulting.webres.GL.dialogWindow.showMsg(templateDialogChoseSubtypeClient, function(ctx) {
+                        econsulting.webres.GL.dialogWindow.showMsg(templateDialogChoseSubtypeClient, function (ctx) {
                             let dialogWrapper = $(ctx);
                             dialogWrapper.find('.dialog-header').text('Створення Клієнта ММСБ');
                             dialogWrapper.find('.dialog-buttons-cont .close-btn')
@@ -823,7 +842,7 @@ econsulting.webres.GL.registerFormBtnHandlers = function (formElem) {
                                 dialogWrapper.find('.dialog-buttons-cont').append('<button class="btn next-btn">Продовжити</button>');
                             }
                             dialogWrapper.find('.dialog-buttons-cont .next-btn').off('click.newclient');
-                            dialogWrapper.find('.dialog-buttons-cont .next-btn').on('click.newclient', function() {
+                            dialogWrapper.find('.dialog-buttons-cont .next-btn').on('click.newclient', function () {
                                 const subtypeClient = dialogWrapper.find("[name=SubtypeClient]").val();
                                 if (subtypeClient) {
                                     parent.Xrm.Utility.openEntityForm(activeFormName, null, {
@@ -838,8 +857,7 @@ econsulting.webres.GL.registerFormBtnHandlers = function (formElem) {
                                 }
                             })
                         });
-                    }
-                    else {
+                    } else {
                         parent.Xrm.Utility.openEntityForm(activeFormName, null, {formid: currentFormId}, {openInNewWindow: true});
                     }
                 } else {

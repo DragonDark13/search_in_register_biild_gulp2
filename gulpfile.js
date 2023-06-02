@@ -100,13 +100,13 @@ async function includeHTML(){
       prefix: '@@',
       basepath: '@file'
     })).pipe(debug({title: 'unicorn:'}))
-    .pipe(gulp.dest('./search')).pipe(debug({title: 'unicorn:'}));
+    .pipe(gulp.dest('./search/')).pipe(debug({title: 'unicorn:'}));
 }
 
 function watchFiles() {
     watch('./src/sass/*', styles);
     watch('./src/js/*', js);
-    watch('./src/*.html',html)
+    watch(['./src/*.html','./src/*/*.html'],includeHTML)
     // watch('./libs/images/*', img);
 }
 
@@ -120,6 +120,6 @@ function browserSync() {
 }
 
 exports.watch = parallel(watchFiles, browserSync);
-exports.default = series(clear, series([js, styles, html]));
+exports.default = series(clear, series([js, styles, includeHTML]));
 
 // exports.default = includeHTML;

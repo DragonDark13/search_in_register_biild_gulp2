@@ -22,7 +22,7 @@
             <div class="form searchInRegisterForm">
                 <div class="filterContainer">
                     <div class="btns-cont">
-                        <button class="btn-register btn active">Реєстр</button>
+                        <button class="btn-register btn active" data-toggle="modal" data-target="#modalSearchInRegister">Реєстр</button>
                     </div>
                     <div class="input-cont">
                         <label for="account-client-code">Станом на</label>
@@ -654,6 +654,10 @@
         </div>
     </div>
 </template>
+
+@@include('./htmlPartial/modalRegister.html');
+
+
 
 <script src="../libs/js/jquery_3.3.1.min.js"></script>
 <script src="../libs/js/bootstrap.js"></script>

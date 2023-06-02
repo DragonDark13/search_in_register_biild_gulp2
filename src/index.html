@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="btns-cont">
-                        <button class="btn-filters btn active">Фільтри</button>
+                        <button class="btn-filters btn active" data-toggle="modal" data-target="#modalFilters">Фільтри</button>
                     </div>
                     <div class="btns-cont">
                         <button class="btn-refresh btn active">Оновити</button>
@@ -655,7 +655,8 @@
     </div>
 </template>
 
-@@include('./htmlPartial/modalRegister.html');
+@@include('./htmlPartial/_modalRegister.html');
+@@include('./htmlPartial/_modalFilters.html');
 
 
 

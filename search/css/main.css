@@ -488,6 +488,11 @@ body {
   color: #C1C1C1;
   border: 1px solid #C1C1C1;
   border-radius: 0;
+  transition: 0.7s all ease;
+}
+.form-container .btn-outline:hover {
+  color: #000;
+  background: #D9DE2A;
 }
 
 .form-container .form-wrapper .forms .form.searchInRegisterForm .btns-cont {

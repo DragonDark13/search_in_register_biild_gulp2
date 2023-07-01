@@ -20,6 +20,7 @@
     "sass": "^1.62.1"
   },
   "dependencies": {
+    "bootstrap-datepicker": "^1.10.0",
     "gulp-debug": "^4.0.0"
   }
 }

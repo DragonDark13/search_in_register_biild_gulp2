@@ -108,9 +108,9 @@ var arrayInputFieldsAccount = [
 
 $(function () {
     // econsulting.webres.GL.hideCrmRibbonButtons();
-
+    console.log("loader");
     econsulting.webres.GL.topJQueryInit();
-    econsulting.webres.GL.dialogWindowInit();
+    // econsulting.webres.GL.dialogWindowInit();
     econsulting.webres.GL.getWebConstantsFetchRequest();
     econsulting.webres.GL.getcurrentUserRuCodeFetchRequest();
 
@@ -118,7 +118,7 @@ $(function () {
     econsulting.webres.GL.formBtnsInit();
     econsulting.webres.GL.telephoneInputFieldInitState($(".telephone-mask"));
 
-    econsulting.webres.GL.gridsInitState();
+    // econsulting.webres.GL.gridsInitState();
     econsulting.webres.GL.gridInit(gridTableAccount);
     econsulting.webres.GL.gridInit(gridTableContact);
 

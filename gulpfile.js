@@ -1,4 +1,4 @@
-const gulp        = require('gulp');
+const gulp = require('gulp');
 const fileinclude = require('gulp-file-include');
 const debug = require('gulp-debug');
 
@@ -23,103 +23,68 @@ const changed = require('gulp-changed');
 const browsersync = require('browser-sync').create();
 
 
-function clear() {
-    return src('./search/*', {
-            read: false
-        })
-        .pipe(clean());
-}
-
-
-
-
-function js() {
-    const source = './src/js/*.js';
-
-    return src(source)
-        .pipe(changed(source))
-        // .pipe(concat('bundle.js'))
-        // .pipe(uglify())
-        // .pipe(rename({
-        //     extname: '.min.js'
-        // }))
-        .pipe(dest('./search/js/'))
-        .pipe(browsersync.stream());
-}
-
-//  gulp.task('styles', () => {
-//
-// });
-
-function styles() {
-     return gulp.src('./src/sass/main.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./search/css/')).pipe(browsersync.stream());
-}
-
-function css() {
-    const source = './src/sass/main.scss';
-
-    return src(source)
-        .pipe(changed(source))
-        .pipe(sass())
-        .pipe(autoprefixer({
-            overrideBrowserslist: ['last 2 versions'],
-            cascade: false
-        }))
-        // .pipe(rename({
-        //     extname: '.min.css'
-        // }))
-        // .pipe(cssnano())
-        .pipe(dest('./search/css/'))
-        .pipe(browsersync.stream());
-}
-
-function html() {
-        const source = './src/*.html';
-
-        return src(source).pipe(changed(source)).pipe(dest('./search/')).pipe(browsersync.stream());
-
-
-}
-
-
-
-const paths = {
-  scripts: {
-    src: './src/',
-    dest: '../search/'
-  }
+const srcPath = {
+    scripts: './src/js/*.js',
+    sass: './src/sass/main.scss',
+    html: 'src/*.html'
 };
 
-async function includeHTML(){
+const destPath = {
+    scripts: './search/js/',
+    css: './search/css/',
+    html: './search/'
+};
 
-  console.log("paths.scripts.src",paths.scripts.src);
-  return gulp.src('src/*.html').pipe(debug({title: 'unicorn:'}))
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    })).pipe(debug({title: 'unicorn:'}))
-    .pipe(gulp.dest('./search/')).pipe(debug({title: 'unicorn:'}));
-}
+const errorHandler = (error) => {
+    console.error(error.message);
+    // виконайте додаткові дії при помилці
+};
 
-function watchFiles() {
+const clear = () => {
+    return src('./search/*', {read: false})
+        .pipe(clean());
+};
+
+const js = () => {
+    return src(srcPath.scripts)
+        .pipe(changed(srcPath.scripts))
+        .pipe(dest(destPath.scripts))
+        .pipe(browsersync.stream());
+};
+
+const styles = () => {
+    return src(srcPath.sass)
+        .pipe(sass().on('error', errorHandler))
+        .pipe(dest(destPath.css))
+        .pipe(browsersync.stream());
+};
+
+const includeHTML = async () => {
+    console.log("paths.scripts.src", srcPath.scripts);
+    return src(srcPath.html)
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(dest(destPath.html))
+};
+
+const watchFiles = () => {
     watch('./src/sass/*', styles);
     watch('./src/js/*', js);
-    watch(['./src/*.html','./src/*/*.html'],includeHTML)
-    // watch('./libs/images/*', img);
-}
+    watch(['./src/*.html', './src/*/*.html'], includeHTML);
+};
 
-function browserSync() {
+const browserSync = () => {
     browsersync.init({
         server: {
-            baseDir: ['./search/','./'],
+            baseDir: ['./search/', './'],
         },
         port: 3000
     });
-}
+};
 
-exports.watch = parallel(watchFiles, browserSync);
-exports.default = series(clear, series([js, styles, includeHTML]));
+exports.run = parallel(watchFiles, browserSync);
+exports.build = series(clear, series(js, styles, includeHTML));
 
 // exports.default = includeHTML;
